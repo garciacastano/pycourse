@@ -4,6 +4,7 @@ MOD 02: Functional programming and iterables tools exercise
 '''
 
 import json
+from operator import itemgetter
 
 
 ENDPOINTS = [{"ipv4": ["10.95.150.121"], "ipv6": ["fd88:3be1:fee4:8c5c::2a"], "port": None, "region": 1,
@@ -36,7 +37,10 @@ def validate_external_endpoints(endpoints=ENDPOINTS):
     #3 Implement a test that checks that both endpoints from region 2 have been shared
     :returns: True if all region 2 endpoints have been shared, False otherwise
     """
-    return None
+    region2_endpoints = filter(lambda x: x["region"] == 2, endpoints)
+    external_endpoints_ip = map(itemgetter("ip"), load_json_file()["external_endpoints"])
+    isShared = map(lambda r2end: r2end["ipv4"][0] in external_endpoints_ip or r2end["ipv6"][0] in external_endpoints_ip, region2_endpoints)
+    return all(isShared)
 
 
 def validate_endpoint_resolution(endpoints=ENDPOINTS, resolution=RESOLUTION):
@@ -45,7 +49,12 @@ def validate_endpoint_resolution(endpoints=ENDPOINTS, resolution=RESOLUTION):
     #2 ENDPOINTS global contains the metadata info of several Endpoints
     #3 Implement a test that checks that wowzas endpoints from region #1 have been resolved
     """
-    return None
+    res_list = resolution.split()
+    region1_endpoints = filter(lambda x: x["region"]==1 ,endpoints)
+    isResolved = map(lambda rg1end: rg1end["wowza"]["ipv4"][0] in res_list or
+                                    rg1end["wowza"]["ipv6"][0] in res_list, region1_endpoints)
+
+    return all(isResolved)
 
 
 def validate_not_enabled_buckest():
@@ -54,7 +63,12 @@ def validate_not_enabled_buckest():
     #2 Implement a test that certifies that the not enabled buckets are 2,3 and 5
     :returns: list with the id of not enabled buckets
     """
-    return []
+    not_en_buck = filter(lambda buck: buck["enabled"] is False, load_json_file()["buckets"])
+    ids = map(itemgetter("id"), not_en_buck)
+    if ids == [2, 3, 5]:
+        return ids
+    else:
+        return None
 
 
 def flatten_nested_lists(l):
@@ -66,4 +80,5 @@ def flatten_nested_lists(l):
     :param l: list to flatten
     :returns: new flattened list
     """
-    return []
+
+    return None

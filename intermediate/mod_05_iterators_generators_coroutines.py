@@ -42,13 +42,13 @@ print it.next()
 print it.next()
 print it.next()  # Once the StopIteration is raised an iterator is useless, there is no 'restart'
 
+
 it = iter(spam)
-s, p, a, m = it  # Ierators also support unpacking (you have to know the number of items to unpack)
+s, p, a, m = it  # Iterators also support unpacking (you have to know the number of items to unpack)
 print s
 print p
 print a
 print m
-
 
 #===============================================================================
 # Python Iterators
