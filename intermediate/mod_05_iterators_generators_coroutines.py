@@ -116,8 +116,8 @@ class WorkindDaysGenerator(object):
 
 my_working_days_instance = WorkindDaysGenerator()
 
-for workind_day in my_working_days_instance:
-    print workind_day
+for working_day in my_working_days_instance:
+    print working_day
 
 
 # Let's optimise this example using only one class. Any idea?

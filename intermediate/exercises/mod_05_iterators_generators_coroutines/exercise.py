@@ -23,8 +23,12 @@ def repeat_items(sequence, num_times=2):
     :param num_times: number of times to repeat each item
     :returns: generator with each element of the sequence repeated
     '''
-    while False:
-        yield None
+    for i in sequence:
+        rep=num_times
+        while rep>0:
+            yield i
+            rep-=1
+            continue
 
 
 def izip(*sequences):
@@ -41,8 +45,17 @@ def izip(*sequences):
     :param sequences: two or more sequences to loop over
     :returns: generator returning tuples with the n-th item of input sequences
     '''
-    while False:
-        yield None
+    if len(sequences) > 0:
+        tuples_len = min(int(i) for i in map(lambda x: len(x), sequences))
+    else:
+        yield []
+        return
+
+    for index in range(0, tuples_len):
+        result_element = []
+        for sequence in sequences:
+            result_element.append(sequence[index])
+        yield result_element
 
 
 def merge(*sequences):
@@ -61,8 +74,10 @@ def merge(*sequences):
     :param sequences: two or more sequences to loop over
     :returns: generator returning one item of each
     '''
-    while False:
-        yield None
+
+    iterators = map(iter, sequences)
+    while sequences:
+        yield map(iter)
 
 
 def flatten(L):
