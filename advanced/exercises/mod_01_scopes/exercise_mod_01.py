@@ -57,8 +57,9 @@ def set_key(key, value, ttl=None):
     If no ttl (in seconds) is provided CACHE_TTL is taken by default.
     If cache length exceeds CACHE_SIZE when adding a key, the oldest (first inserted) key is removed (FIFO)
     """
-    raise NotImplementedError
-
+    CACHE[key] = (time.time() + (ttl or CACHE_TTL), value)
+    if len(CACHE) > CACHE_SIZE:
+        CACHE.popitem(last=False)
 
 def get_key(key):
     """Retrieve a key value from the cache.
