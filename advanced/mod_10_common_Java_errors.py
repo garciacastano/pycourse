@@ -28,7 +28,7 @@ MOD 10: common Java developers errors
 
 #===============================================================================
 # - Fear to multiple inheritance
-#    - Mixins and multiple inheritance are widely used in Python
+#    - Mixing and multiple inheritance are widely used in Python
 #    - You must understand what you are implementing, that's your work
 #    - "we're all grown-ups here"
 #===============================================================================

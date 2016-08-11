@@ -46,25 +46,17 @@ def measure(f):
 
     @wraps(f)
     def wrapper(*args, **kwargs):
-        # TODO: get time here
-
-        # TODO: call the function being decorated: f
-
-        # TODO: get ellapsed time here
-
-        # TODO: make ellapsed_time available in object as an attribute _time_<method_name>
+        before = time()
+        func = f(*args, **kwargs)
+        delta = time() - before
         time_internal_var = '_time_{0}'.format(f.__name__)
-        setattr()  # Hint: args[0] is the object (self)
+        setattr(args[0], time_internal_var, delta)
 
         def ellapsed_time(obj):
             return getattr(obj, time_internal_var, 'na')
 
-        # TODO: Instead of None bind ellapsed_time as a method
-        # HINT: use MethodType to bind functions to instances
-        wrapper.last_time = None
-
-        # TODO: Here you must provide code to return the result of decorated function
-        return
+        wrapper.last_time = MethodType(ellapsed_time, args[0])
+        return func
     return wrapper
 
 
@@ -87,28 +79,19 @@ class MeasureMetaclass(type):
     >>my_class.get_fruits()
     >>my_class.get_dries_fruits()
     >>my_class.show_execution_time()
-
     """
     def __new__(mcs, classname, bases, attrs_dict):
         for attr, attrval in attrs_dict.iteritems():
-            # TODO: Decorate class methods not beginning with __
-            # HINT:
-            #     @decorator
-            #     def function()
-            # is same that
-            #     function = decorator(function)
-            # HINT: use isfunction
-            pass
+            if isfunction(attrval) and not attr.startswith("__"):
+                attrs_dict[attr] = measure(attrval)
 
-        # TODO: bind show_execution_time to the class to show all measure times
-        # HINT: you can add key, value to attrs_dict (all class methods)
-
+        attrs_dict["show_execution_time"] = show_execution_time
         return type.__new__(mcs, classname, bases, attrs_dict)
 
 
 class SomeClass(object):
 
-    # TODO: make SomeClass created with metaclass MeasureMetaclass
+    __metaclass__ = MeasureMetaclass
 
     def __init__(self):
         self.fruits = ['apple', 'peach', 'banana', 'strawberry']

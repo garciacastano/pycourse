@@ -46,7 +46,6 @@ print inst.__dict__
 
 print SlottedClass.__dict__
 
-
 # How it really works internally
 print SlottedClass.__dict__['attr_x'].__get__(inst, SlottedClass)  # Slots are descriptors
 SlottedClass.__dict__['attr_x'].__set__(inst, 100001)
@@ -64,7 +63,7 @@ print inst.attr_x
 # - Slots are implemented with descriptors
 #
 # - Don't forget there is no instance __dict__ when using slots
-#    - There are other restrictions. Chack the documentation!
+#    - There are other restrictions. Check the documentation!
 #===========================================================================
 
 

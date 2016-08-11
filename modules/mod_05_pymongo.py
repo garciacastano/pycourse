@@ -41,9 +41,9 @@ replica_client = pymongo.MongoClient(
                 ('localhost:27017', 'localhost:27018', 'localhost:27019'), # also you can use url format
                 w=3, # globally set write_concern (wtimeout can also be set...).
                 replicaset='sdrepl',
-                read_preference=ReadPreference.PRIMARY, # several options available
-                auto_start_request=True  # consistent reads (socket allocated by requests)
-                ) # you can also use MongoReplicaSetClient
+                read_preference=ReadPreference.PRIMARY # several options available
+                )  #auto_start_request=True consistent reads (socket allocated by requests)
+                 # you can also use MongoReplicaSetClient
 # More options in http://api.mongodb.org/python/current/api/pymongo/connection.html
 
 # When some of the hosts can not be accessed AutoReconnect is raised (still can use replica_client)

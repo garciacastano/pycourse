@@ -31,6 +31,7 @@ class CachedAttribute(object):
         self.func = func
         self.delta = seconds
         self.expiration = None
+        self.cached_result = None
 
     def __get__(self, inst, cls):
         return self.func(inst)

@@ -82,7 +82,7 @@ print VerboseGetClass.attr
 #===============================================================================
 
 
-# Let's see a real world example that you use at all time
+# Let's see a real world example that you'll use at all time
 
 
 class MyClass(object):

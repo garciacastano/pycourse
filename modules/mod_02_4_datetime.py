@@ -7,7 +7,7 @@ MOD: datetime and time
 import time
 
 
-# Current time in seconds since EPOCH. Precission depends on the system.
+# Current time in seconds since EPOCH. Precision depends on the system.
 print time.time()
 
 

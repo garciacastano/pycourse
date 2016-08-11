@@ -57,7 +57,7 @@ print t.repeat(repeat=3, number=100)
 #===============================================================================
 # - timeit module:
 #    - Provides a simple way to time the execution of Python statements.
-#    - Provides both command line and programatic interfaces.
+#    - Provides both command line and programmatic interfaces.
 #        - Provides timeit.Timer class
 #
 #    - Useful to compare performance of different implementations.
@@ -125,7 +125,7 @@ stats.strip_dirs().sort_stats('calls').print_stats(max_num_lines)
 
 #===============================================================================
 # - Use cProfile to identify slowest parts of your code
-# - Use timeit to comparte alternative implementations
+# - Use timeit to compare alternative implementations
 #===============================================================================
 
 

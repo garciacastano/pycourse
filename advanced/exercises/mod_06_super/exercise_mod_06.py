@@ -107,11 +107,27 @@ class DateStr(object):
         return super(DateStr, self).__setattr__(name, value)
 
 
-class AmazingDict(DateStr, Lower, dict):
+class AmazingDict(Lower, Attr, DateStr, dict, Verbose, object):
     '''Dictionary with amazing enhanced behaviour:
     - Access keys as attributes only if they already exist
     - Lower attributes and key names for query or modification
     - Convert attributes or keys datetime values to strings when they are modified
     - Print all attributes and keys accesses for query or modification
     '''
+
+    def __getattribute__(self, name):
+        return super(AmazingDict, self).__getattribute__(name)
+
+    def __getitem__(self, key):
+        return super(AmazingDict, self).__getitem__(key)
+
+    def __setitem__(self, key, value):
+        return super(AmazingDict, self).__setitem__(key, value)
+
+    def __getattr__(self, name):
+        return super(AmazingDict, self).__getattr__(name)
+
+    def __setattr__(self, name, value):
+        return super(AmazingDict, self).__setattr__(name, value)
+
     pass
